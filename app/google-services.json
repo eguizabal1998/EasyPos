@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "785663096225",
+    "firebase_url": "https://easypos-cca1f.firebaseio.com",
+    "project_id": "easypos-cca1f",
+    "storage_bucket": "easypos-cca1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:785663096225:android:b45046998dbdffdcd0c7e0",
+        "android_client_info": {
+          "package_name": "com.basicdeb.easypos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "785663096225-b6t49sgbc2r0d0bjgjnukufje0fki3q7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.basicdeb.easypos",
+            "certificate_hash": "816557fee7b2aacbf43c7a7be6c662935f867a3c"
+          }
+        },
+        {
+          "client_id": "785663096225-3jbp14jsu4i4ct29botj0kg0fhkiqiru.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVC0OBipIHNNEAa-v23ya2q7nPOq4DtYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "785663096225-3jbp14jsu4i4ct29botj0kg0fhkiqiru.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
