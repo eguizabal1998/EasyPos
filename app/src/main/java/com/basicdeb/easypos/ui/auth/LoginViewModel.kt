@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.basicdeb.easypos.Data.firebase.FireBaseException
 import com.basicdeb.easypos.Data.repositories.UserRepository
 import kotlinx.coroutines.*
-import java.lang.Exception
-import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
 class LoginViewModel (private val repository: UserRepository) : ViewModel(),CoroutineScope {
@@ -27,6 +25,8 @@ class LoginViewModel (private val repository: UserRepository) : ViewModel(),Coro
     //email and password for singUp
     var emailsingUp: String? = null
     var passwordsingUp: String? = null
+    var passwordsingUp2: String? = null
+    var empresasingUp: String? = null
 
     //auth listener
     var authListener: AuthListener? = null
@@ -40,7 +40,7 @@ class LoginViewModel (private val repository: UserRepository) : ViewModel(),Coro
     fun login() {
 
         if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
-            authListener?.onFailure("Invalid email or password")
+            authListener?.onFailure("Complete los campos")
             Log.i("login","vacio")
             return
         }
@@ -68,8 +68,13 @@ class LoginViewModel (private val repository: UserRepository) : ViewModel(),Coro
 
     //Doing same thing with signup
     fun signup() {
-        if (emailsingUp.isNullOrEmpty() || passwordsingUp.isNullOrEmpty()) {
-            authListener?.onFailure("Please input all values")
+        if (emailsingUp.isNullOrEmpty() || passwordsingUp.isNullOrEmpty() || passwordsingUp2.isNullOrEmpty() || empresasingUp.isNullOrEmpty()) {
+            authListener?.onFailure("Complete los campos")
+            return
+        }
+
+        if (passwordsingUp != passwordsingUp2){
+            authListener?.onFailure("Las contraseñas no coinciden")
             return
         }
 
@@ -80,7 +85,6 @@ class LoginViewModel (private val repository: UserRepository) : ViewModel(),Coro
     }
 
     fun goToSignup(view: View) {
-
     }
 
     fun goToLogin(view: View) {

@@ -9,14 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.basicdeb.easypos.Data.firebase.FirebaseSource
 import com.basicdeb.easypos.Data.repositories.UserRepository
 
 import com.basicdeb.easypos.R
 import com.basicdeb.easypos.databinding.LoginFragmentBinding
-import kotlinx.android.synthetic.main.login_fragment.*
-import javax.inject.Inject
 
 class LoginFragment : Fragment(), AuthListener {
 
@@ -32,13 +30,20 @@ class LoginFragment : Fragment(), AuthListener {
 
         binding.setLifecycleOwner(this)
 
-        val factory = LoginViewModelFactory(UserRepository(FirebaseSource()))
+        val factory = LoginViewModelFactory(
+            UserRepository(FirebaseSource())
+        )
 
         loginViewModel = ViewModelProviders.of(this, factory).get(LoginViewModel::class.java)
 
         binding.loginViewModel = loginViewModel
 
         loginViewModel.authListener = this
+
+        binding.btnLoginRegistro.setOnClickListener {
+            Log.i("login","click")
+            Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_registerFragment)
+        }
 
         return binding.root
     }
@@ -48,6 +53,7 @@ class LoginFragment : Fragment(), AuthListener {
     }
 
     override fun onSuccess() {
+        Log.i("login","onSucces")
     }
 
     override fun onFailure(message: String) {
