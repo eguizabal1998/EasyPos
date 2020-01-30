@@ -2,6 +2,8 @@ package com.basicdeb.easypos.ui.auth
 
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.basicdeb.easypos.Data.firebase.FireBaseException
 import com.basicdeb.easypos.Data.repositories.UserRepository
@@ -12,7 +14,7 @@ class LoginViewModel (private val repository: UserRepository) : ViewModel(),Coro
 
     private var viewModelJob = Job()
 
-    private val job = Job()
+    private val job = viewModelJob
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
@@ -22,19 +24,20 @@ class LoginViewModel (private val repository: UserRepository) : ViewModel(),Coro
     var email: String? = null
     var password: String? = null
 
-    //email and password for singUp
-    var emailsingUp: String? = null
-    var passwordsingUp: String? = null
-    var passwordsingUp2: String? = null
-    var empresasingUp: String? = null
+    private var _navigateToMenu = MutableLiveData<Boolean>()
+
+    val navigatToMenu: LiveData<Boolean>
+        get() = _navigateToMenu
+
+    fun doneNavigateToMenu(){
+        _navigateToMenu.value = false
+    }
 
     //auth listener
     var authListener: AuthListener? = null
 
 
-    val user by lazy {
-        repository.currentUser()
-    }
+    val user: String = repository.currentUser()
 
     //function to perform login
     fun login() {
@@ -57,6 +60,7 @@ class LoginViewModel (private val repository: UserRepository) : ViewModel(),Coro
                 Log.i("login","Try")
                 repository.login(email!!, password!!)
                 Log.i("login","Exito")
+                _navigateToMenu.value = true
             }catch (e:FireBaseException){
                 Log.i("login","catch")
                 authListener?.onFailure(e.message.toString())
@@ -66,23 +70,7 @@ class LoginViewModel (private val repository: UserRepository) : ViewModel(),Coro
 
     }
 
-    //Doing same thing with signup
-    fun signup() {
-        if (emailsingUp.isNullOrEmpty() || passwordsingUp.isNullOrEmpty() || passwordsingUp2.isNullOrEmpty() || empresasingUp.isNullOrEmpty()) {
-            authListener?.onFailure("Complete los campos")
-            return
-        }
 
-        if (passwordsingUp != passwordsingUp2){
-            authListener?.onFailure("Las contraseñas no coinciden")
-            return
-        }
-
-        authListener?.onStarted()
-
-        repository.register(emailsingUp!!, passwordsingUp!!)
-
-    }
 
     fun goToSignup(view: View) {
     }

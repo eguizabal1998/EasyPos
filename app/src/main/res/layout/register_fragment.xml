@@ -8,25 +8,78 @@
 
         <variable
             name="registerFragmment"
-            type="com.basicdeb.easypos.ui.RegisterViewModel" />
+            type="com.basicdeb.easypos.ui.register.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.basicdeb.easypos.ui.RegisterFragment">
+        tools:context="com.basicdeb.easypos.ui.register.RegisterFragment">
 
-
-        <TextView
-            android:id="@+id/textView"
+        <EditText
+            android:id="@+id/et_Register_correo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registro"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="80dp"
+            android:ems="10"
+            android:hint="@string/correo"
+            android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@={registerFragmment.emailsingUp}"/>
+
+        <EditText
+            android:id="@+id/et_Register_contraseña1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:ems="10"
+            android:hint="@string/contraseña"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_Register_correo"
+            android:text="@={registerFragmment.passwordsingUp}"/>
+
+        <EditText
+            android:id="@+id/et_Register_contraseña2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:ems="10"
+            android:hint="@string/repita_contrase_a"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_Register_contraseña1"
+            android:text="@={registerFragmment.passwordsingUp2}"/>
+
+        <EditText
+            android:id="@+id/et_Register_empresa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:ems="10"
+            android:hint="@string/empresa"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_Register_contraseña2"
+            android:text="@={registerFragmment.empresasingUp}"/>
+
+        <Button
+            android:id="@+id/btn_Register_registrarse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="@string/registrarse"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_Register_empresa"
+            android:onClick="@{()-> registerFragmment.signup()}"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

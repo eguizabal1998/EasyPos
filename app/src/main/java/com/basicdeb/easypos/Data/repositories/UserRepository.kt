@@ -8,12 +8,12 @@ class UserRepository (private val firebase: FirebaseSource){
         firebase.login(email, password)
     }
 
-    fun register(email: String, password: String) {
+   suspend fun register(email: String, password: String) {
         firebase.register(email, password)
     }
 
-    fun currentUser() {
-        firebase.currentUser()
+    fun currentUser():String {
+        return firebase.currentUser()!!
     }
 
     fun logout() {

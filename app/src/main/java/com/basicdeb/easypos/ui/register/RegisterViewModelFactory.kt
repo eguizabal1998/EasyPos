@@ -1,15 +1,15 @@
-package com.basicdeb.easypos.ui.auth
+package com.basicdeb.easypos.ui.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.basicdeb.easypos.Data.repositories.UserRepository
 
-class LoginViewModelFactory (private val userRepository: UserRepository): ViewModelProvider.Factory {
+class RegisterViewModelFactory (private val userRepository: UserRepository): ViewModelProvider.Factory {
 
     @SuppressWarnings("Unchecked")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            return LoginViewModel(
+        if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
+            return RegisterViewModel(
                 userRepository
             ) as T
         }

@@ -9,12 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.basicdeb.easypos.Data.firebase.FirebaseSource
 import com.basicdeb.easypos.Data.repositories.UserRepository
 
 import com.basicdeb.easypos.R
 import com.basicdeb.easypos.databinding.LoginFragmentBinding
+import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : Fragment(), AuthListener {
 
@@ -40,10 +43,23 @@ class LoginFragment : Fragment(), AuthListener {
 
         loginViewModel.authListener = this
 
+        if(loginViewModel.user.isNullOrEmpty()){
+
+        }else{
+            this.findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
+        }
+
         binding.btnLoginRegistro.setOnClickListener {
             Log.i("login","click")
             Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_registerFragment)
         }
+
+        loginViewModel.navigatToMenu.observe(this, Observer {
+            if (it == true){
+                loginViewModel.doneNavigateToMenu()
+                this.findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
+            }
+        })
 
         return binding.root
     }

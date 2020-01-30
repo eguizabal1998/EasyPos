@@ -23,13 +23,13 @@ class FirebaseSource {
         }
     }
 
-    fun register(email: String, password: String) {
+    suspend fun register(email: String, password: String) : Unit = suspendCancellableCoroutine {continuation ->
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    //emitter.onComplete()
+                    continuation.resume(Unit)
                 }
                 else {
-                    //emitter.onError(it.exception!!)
+                    continuation.resumeWithException(FireBaseException(it.exception.toString()))
                 }
             }
         }
@@ -37,5 +37,5 @@ class FirebaseSource {
 
     fun logout() = firebaseAuth.signOut()
 
-    fun currentUser() = firebaseAuth.currentUser
+    fun currentUser() = firebaseAuth.currentUser?.email
 }

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="agregarProductoViewModel"
+            type="com.basicdeb.easypos.ui.agregar_producto.AgregarProductoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.basicdeb.easypos.ui.agregar_producto.agregarProductoFragment">
+
+
+        <EditText
+            android:id="@+id/et_Agregar_nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:ems="10"
+            android:hint="Nombre"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@={agregarProductoViewModel.nombre}"/>
+
+        <EditText
+            android:id="@+id/et_Agregar_precio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Precio Unitario"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_Agregar_nombre"
+            android:text="@={agregarProductoViewModel.precio}"/>
+
+        <Switch
+            android:id="@+id/switch_Agregar_inventario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Producto Inventariado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_Agregar_precio"
+            android:checked="@={agregarProductoViewModel.inventario}"/>
+
+        <EditText
+            android:id="@+id/et_Agregar_cantidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Cantidad"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch_Agregar_inventario"
+            android:text="@={agregarProductoViewModel.cantidad}"/>
+
+        <Button
+            android:id="@+id/btn_Agregar_agregar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Agregar producto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_Agregar_cantidad"
+            android:onClick="@{()-> agregarProductoViewModel.crearProducto()}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -12,10 +12,53 @@
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.basicdeb.easypos.ui.RegisterFragment"
+        android:name="com.basicdeb.easypos.ui.register.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/register_fragment"/>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.basicdeb.easypos.ui.menu.MenuFragment"
+        android:label="MenuFragment"
+        tools:layout="@layout/menu_fragment">
+        <action
+            android:id="@+id/action_menuFragment_to_menudbFragment"
+            app:destination="@id/menudbFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menudbFragment"
+        android:name="com.basicdeb.easypos.ui.menubasedatos.menudbFragment"
+        android:label="menudb_fragment"
+        tools:layout="@layout/menudb_fragment" >
+        <action
+            android:id="@+id/action_menudbFragment_to_agregarProductoFragment"
+            app:destination="@id/agregarProductoFragment" />
+        <action
+            android:id="@+id/action_menudbFragment_to_modificarFragment"
+            app:destination="@id/modificarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/agregarProductoFragment"
+        android:name="com.basicdeb.easypos.ui.agregar_producto.agregarProductoFragment"
+        android:label="agregarProductoFragment"
+        tools:layout="@layout/agregar_producto_fragment"/>
+    <fragment
+        android:id="@+id/modificarFragment"
+        android:name="com.basicdeb.easypos.ui.modificar.ModificarFragment"
+        android:label="ModificarFragment"
+        tools:layout="@layout/modificar_fragment">
+        <action
+            android:id="@+id/action_modificarFragment_to_listadoFragment"
+            app:destination="@id/listadoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listadoFragment"
+        android:name="com.basicdeb.easypos.ui.listado.ListadoFragment"
+        android:label="listado_fragment"
+        tools:layout="@layout/listado_fragment" />
 </navigation>
