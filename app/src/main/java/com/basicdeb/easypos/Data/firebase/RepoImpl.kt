@@ -1,6 +1,8 @@
 package com.basicdeb.easypos.Data.firebase
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import com.basicdeb.easypos.ui.listado.Producto
 import com.basicdeb.easypos.vo.Resource
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
@@ -11,16 +13,18 @@ class RepoImpl: IRepo {
         FirebaseFirestore.getInstance()
     }
 
-    var datos = "hola"
 
-    override suspend fun getProductosRepo(): Resource<String> {
+    override suspend fun getProductosRepo(): Resource<MutableList<Producto>> {
          val resultData = firebaseFirestore.collection("productos").get().await()
 
+        val productosList = mutableListOf<Producto>()
+
         for(document in resultData){
-            Log.i("datos","${document.id} => ${document.data}")
+            productosList.add(document.toObject(Producto::class.java))
+            Log.i("evento",productosList.toString())
         }
 
-        datos = resultData.documents.toString()
+        var datos = productosList
 
         return Resource.Success(datos)
     }

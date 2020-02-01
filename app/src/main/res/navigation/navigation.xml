@@ -14,7 +14,9 @@
             app:destination="@id/registerFragment" />
         <action
             android:id="@+id/action_loginFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
+            app:destination="@id/menuFragment"
+            app:popUpTo="@+id/navigation"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -55,10 +57,28 @@
         <action
             android:id="@+id/action_modificarFragment_to_listadoFragment"
             app:destination="@id/listadoFragment" />
+        <argument
+            android:name="nombre"
+            app:argType="string"
+            android:defaultValue="nombre" />
+        <argument
+            android:name="precio"
+            app:argType="float"
+            android:defaultValue="0.00" />
+        <argument
+            android:name="cantidad"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/listadoFragment"
         android:name="com.basicdeb.easypos.ui.listado.ListadoFragment"
         android:label="listado_fragment"
-        tools:layout="@layout/listado_fragment" />
+        tools:layout="@layout/listado_fragment" >
+        <action
+            android:id="@+id/action_listadoFragment_to_modificarFragment"
+            app:destination="@id/modificarFragment"
+            app:popUpTo="@+id/modificarFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

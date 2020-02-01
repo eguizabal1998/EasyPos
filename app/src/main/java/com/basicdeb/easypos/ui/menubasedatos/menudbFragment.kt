@@ -31,7 +31,7 @@ class menudbFragment : Fragment() {
         binding.menudbViewModel = viewModel
 
         binding.btnMenudbAgregar.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_menudbFragment_to_agregarProductoFragment)
+            Navigation.findNavController(it).navigate(menudbFragmentDirections.actionMenudbFragmentToModificarFragment("",0.00f,0))
         }
 
         binding.btnMenudbModificar.setOnClickListener {
